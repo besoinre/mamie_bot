@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'ClashGroteskRegular';
+  /* You can name this whatever you like */
+  src: url('../public/fonts/ClashGrotesk-Regular.woff') format('woff2'),
+    /* Modern browsers */
+    url('../public/fonts/ClashGrotesk-Regular.woff') format('woff');
+  /* Older browsers */
+  font-weight: normal;
+  /* You can specify normal, bold, etc. */
+  font-style: normal;
+  /* You can specify italic, oblique, etc. */
+}
+
+@font-face {
+  font-family: 'Geist';
+  /* You can name this whatever you like */
+  src: url('../public/fonts/GeistVF.woff2') format('woff2'),
+    /* Modern browsers */
+    url('../public/fonts/GeistVF.woff') format('woff');
+  /* Older browsers */
+  font-weight: bold;
+  /* You can specify normal, bold, etc. */
+  font-style: normal;
+  /* You can specify italic, oblique, etc. */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  /* Width of the scrollbar */
+  height: 12px;
+  /* Height of the scrollbar (for horizontal scrollbar) */
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar-track {
+  background: var(--fourth-color);
+  /* Background color of the track */
+  border-radius: 10px;
+  /* Rounded corners for the track */
+}
+
+/* Style the draggable part of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  /* Color of the scrollbar thumb */
+  border-radius: 10px;
+  /* Rounded corners for the thumb */
+}
+
+/* On hover, change the thumb color */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--active-color);
+  /* Darker color when hovered */
+}
+
+:root {
+  --primary-color: #36393F;
+  --secondary-color: #A0A0A0;
+  --third-color: #B0B0B0;
+  --fourth-color: #99AAB5;
+  --fifth-color: #40444B;
+  --sixth-color: #FFFFFF;
+  --text-color: #FFFFFF;
+  --active-color: #B0B0B0;
+
+  --error-color: #E74C3C;  
+  --success-color: #2ECC71; 
+}

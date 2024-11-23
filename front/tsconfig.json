@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",                          /* Specify ECMAScript target version */
+    "lib": ["dom", "dom.iterable", "esnext"], /* Include the necessary libraries */
+    "allowJs": true,                          /* Allow JavaScript files */
+    "skipLibCheck": true,                     /* Skip type checking of declaration files */
+    "esModuleInterop": true,                  /* Compatibility with CommonJS modules */
+    "allowSyntheticDefaultImports": true,     /* Allow default imports */
+    "strict": true,                           /* Enable all strict type-checking options */
+    "forceConsistentCasingInFileNames": true, /* Ensure consistent file naming */
+    "module": "esnext",                       /* Specify module code generation */
+    "moduleResolution": "node",               /* Resolve modules in Node.js style */
+    "resolveJsonModule": true,                /* Allow importing of JSON files */
+    "isolatedModules": true,                  /* Ensure all files are modules */
+    "noEmit": true,                           /* Disable emitting of compiled files */
+    "jsx": "react-jsx"                        /* Enable JSX support in TypeScript */
+  },
+  "include": ["src"]                          /* Include your source folder */
+}

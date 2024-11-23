@@ -1,0 +1,14 @@
+.header h1 {
+    font-family: 'Geist', sans-serif;
+    font-size: calc(4rem + 4vw);  /* Slightly reduce size for better responsiveness */
+    font-weight: 300;             /* Increase weight for a bolder, more readable look */
+    color: var(--text-color); /* White title */
+    letter-spacing: -0.05em;      /* Reduce letter spacing to improve readability */
+    line-height: 1.1;             /* Tighter line-height to bring lines closer together */
+    text-transform: uppercase;
+    text-align: center;           /* Ensures alignment in the center of the page */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4); /* Softens and extends shadow for more depth */
+    margin: 0;                    /* Remove default margins */
+    padding: 0.5em 0;             /* Adds some padding for breathing room */
+    max-width: 90vw;              /* Controls width on very large screens */
+}

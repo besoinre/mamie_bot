@@ -1,0 +1,41 @@
+.player-item {
+    width: 600px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .player-name,
+    .player-puuid {
+        font-size: 1rem;
+    }
+
+    .player-puuid {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 300px;
+        word-break: break-all;
+        display: inline-block;
+        font-size: 0.9rem;
+    }
+
+    .delete-button {
+        background-color: var(--error-color);
+        color: var(--sixth-color);
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+
+    .delete-button:hover {
+        opacity: 0.7;
+    }
+}

@@ -1,0 +1,51 @@
+.search-bar {
+    margin-bottom: 20px;
+    h2 {
+        color: var(--secondary-color);
+        font-family: 'ClashGroteskRegular';
+        font-size: 3rem;
+        font-weight: 700;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .search-form {
+        display: flex;
+        justify-content: space-between;
+
+        input {
+            padding: 15px;
+            width: 70%;
+            max-width: 400px;
+            font-size: 1.2rem;
+            font-family: 'ClashGroteskRegular', sans-serif;
+            border: 1px solid var(--third-color);
+            background-color: var(--text-color);
+            border-radius: 8px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: border 0.3s ease;
+
+            &:focus {
+                outline: none;
+                border-color: var(--secondary-color);
+            }
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 8px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 15px;
+
+            &:hover {
+                background-color: var(--active-color);
+            }
+        }
+    }
+}

@@ -1,0 +1,62 @@
+.live-event-card {
+    background-color: var(--secondary-color);
+    width: 800px;
+    max-width: 80vw;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+
+    color: var(--text-color);
+    font-family: 'ClashGroteskRegular';
+    font-size: 1rem;
+    letter-spacing: 0, 1em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+
+
+    p {
+        margin: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    h3.header {
+        font-weight: bolder;
+    }
+
+    .details {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+
+        .details-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            align-items: flex-start;
+
+
+            .details-header {
+                font-weight: bold;
+            }
+
+            ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    }
+
+    .timestamp {
+        margin-top: 1em;
+    }
+}

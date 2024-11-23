@@ -1,0 +1,29 @@
+.section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.section-one {
+    background: linear-gradient(45deg, var(--fourth-color), var(--primary-color));
+}
+
+.section-two {
+    background-color: var(--fifth-color); 
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.section-three {
+    height: fit-content;
+    background-color: var(--sixth-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.section-four {
+    background-color: var(--fourth-color);
+}

@@ -1,0 +1,22 @@
+# Node.js dependencies
+front/node_modules/
+front/package-lock.json
+# Build artifacts
+front/build/
+front/dist/
+
+
+# Python virtual environment
+back/myenv/
+back/__pycache__/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# System files
+.DS_Store
+
+.vscode

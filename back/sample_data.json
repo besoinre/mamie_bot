@@ -1,0 +1,42 @@
+[
+    {
+        "player": "sevaus#EUW",
+        "rank": "Emerald III 0 LP",
+        "status": "entered",
+        "timestamp": "28/09/2024, 22:45:23"
+    },
+    {
+         "player": "Spectrim#EUW",
+        "rank": "Diamond II 21 LP",
+        "status": "entered",
+        "timestamp": "28/09/2024, 22:52:05"
+    },
+    {
+        "player": "sevaus#EUW",
+        "rank": "Emerald III 0 LP",
+        "status": "exited",
+        "timestamp": "28/09/2024, 22:54:08",
+        "gameInfo": {
+            "rounds": 27,
+            "result": "lose",
+            "lpChange": 38,
+            "topComp": "Portal 8 & Mage 3",
+            "placement": 7,
+            "duration": "26:31",
+            "augments" : [
+                {
+                    "name": "Spellblades",
+                    "stars": 2
+                },
+                {
+                    "name": "High Voltage",
+                    "stars": 2
+                },
+                {
+                    "name": "Martyr",
+                    "stars": 2
+                }
+            ]
+        }
+    }
+]

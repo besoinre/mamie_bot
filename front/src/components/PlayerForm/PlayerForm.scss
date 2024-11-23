@@ -1,0 +1,87 @@
+.player-form{
+    width: 600px;
+    h2 {
+        color: var(--secondary-color);
+        font-family: 'ClashGroteskRegular';
+        font-size: 3rem;
+        font-weight: 700;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    .add-player-form {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    
+        .input-group {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            width: 75%;
+        }
+    
+        #player-name {
+            width: 75%;
+        }
+    
+        #puuid {
+            width: 25%
+        }
+    
+        #submit {
+            width: 25%
+        }
+    
+        input {
+            padding: 15px;
+            font-size: 1.2rem;
+            font-family: 'ClashGroteskRegular', sans-serif;
+            border: 1px solid var(--third-color);
+            background-color: var(--text-color);
+            border-radius: 8px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: border 0.3s ease;
+    
+            &:focus {
+                outline: none;
+                border-color: var(--secondary-color);
+            }
+        }
+    
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 8px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+    
+            &:hover {
+                background-color: var(--active-color);
+            }
+        }
+    }
+    
+    
+    .result-message {
+        padding: 10px 15px;
+        margin-top: 15px;
+        border-radius: 5px;
+        font-size: 1rem;
+        text-align: center;
+    
+        &.success {
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+    
+        &.error {
+            color: var(--error-color);
+            border: 1px solid var(--error-color);
+        }
+    }
+}
