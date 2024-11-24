@@ -8,6 +8,7 @@ front/dist/
 
 # Python virtual environment
 back/myenv/
+back/venv/
 back/__pycache__/
 back/.env
 
