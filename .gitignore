@@ -12,6 +12,7 @@ back/myenv/
 back/venv/
 back/__pycache__/
 back/.env
+back/testmongo.py
 
 # Environment variables
 .env

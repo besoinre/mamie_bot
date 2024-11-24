@@ -9,9 +9,10 @@ import traceback
 import re
 from bson import ObjectId
 import os
+from waitress import serve
 
 database_url = os.getenv("DATABASE_URL")
-client = MongoClient(database_url)
+client = MongoClient(database_url, ssl=True)
 db = client['mamie_bot']
 playersCollection = db['players']
 eventsCollection = db['events']
@@ -112,5 +113,8 @@ thread.start()
 # if __name__ == '__main__':
 #     app.run(debug=True)
 
+# if __name__ == '__main__':
+#     app.run(host="0.0.0.0", port=port)
+
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=port)
+    serve(app, host='0.0.0.0', port=port)
