@@ -19,6 +19,8 @@ eventsCollection = db['events']
 app = Flask(__name__)
 CORS(app)
 
+port = int(os.getenv("PORT", 5000))
+
 @app.route('/live-events', methods=['GET'])
 def get_events():
     player_name = request.args.get('name')
@@ -107,5 +109,8 @@ thread = threading.Thread(target=lp_tracker)
 thread.daemon = True  # Ensures the thread will close when the main program ends
 thread.start()
 
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=port)
