@@ -9,6 +9,7 @@ front/dist/
 # Python virtual environment
 back/myenv/
 back/__pycache__/
+back/.env
 
 # Environment variables
 .env
