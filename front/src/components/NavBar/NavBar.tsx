@@ -40,14 +40,14 @@ const NavBar = () => {
                         Home
                     </a>
                 </li>
-                <li>
+                {/* <li>
                     <a 
                         href="#search" 
                         className={active === 'search' ? 'active' : ''}
                     >
                         Search
                     </a>
-                </li>
+                </li> */}
                 <li>
                     <a 
                         href="#eventsList" 
