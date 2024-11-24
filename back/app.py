@@ -11,7 +11,7 @@ from bson import ObjectId
 import os
 
 database_url = os.getenv("DATABASE_URL")
-client = MongoClient(database_url, ssl=True, ssl_certfile=None, ssl_keyfile=None)
+client = MongoClient(database_url)
 db = client['mamie_bot']
 playersCollection = db['players']
 eventsCollection = db['events']
