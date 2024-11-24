@@ -21,9 +21,9 @@ const App: React.FC = () => {
       <Section id="home" className='section-one'>
         <Header />
       </Section>
-      <Section id="search" className='section-two'>
+      {/* <Section id="search" className='section-two'>
         <PlayerSection/>
-      </Section>
+      </Section> */}
       <Section id="eventsList" className='section-three'>
         <SearchBar onSearch={handleSearch} />
         <LiveEventsList playerName={playerName} />
