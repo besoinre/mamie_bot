@@ -6,6 +6,7 @@ const useLiveEventInfo = (playerName?: string) => {
     const [data, setData] = useState<LiveEvent[]>([]);
     const [error, setError] = useState<string>("");
     const prevData = useRef<LiveEvent[]>([]);
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     const areLiveEventsEqual = (prev: LiveEvent[], current: LiveEvent[]) => {
         if (prev.length !== current.length) return false;
@@ -43,7 +44,7 @@ const useLiveEventInfo = (playerName?: string) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:5000/live-events', {
+                const response = await axios.get(apiUrl+'live-events', {
                     params: playerName ? { name: playerName } : {}
                 });
                 let liveEvents = response.data.map((data: any) => transform(data));

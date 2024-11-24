@@ -4,6 +4,7 @@ front/package-lock.json
 # Build artifacts
 front/build/
 front/dist/
+front/.env
 
 
 # Python virtual environment

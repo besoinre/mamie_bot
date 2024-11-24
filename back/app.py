@@ -8,8 +8,10 @@ import time
 import traceback
 import re
 from bson import ObjectId
+import os
 
-client = MongoClient('mongodb://localhost:27017/')
+database_url = os.getenv("DATABASE_URL")
+client = MongoClient(database_url)
 db = client['mamie_bot']
 playersCollection = db['players']
 eventsCollection = db['events']
@@ -20,13 +22,10 @@ CORS(app)
 @app.route('/live-events', methods=['GET'])
 def get_events():
     player_name = request.args.get('name')
-
     if(player_name):
         documents = eventsCollection.find({"player": {"$regex": f"^{player_name}$", "$options": "i"}})
     else:
         documents = eventsCollection.find()
-
-   
     events = []
     for doc in documents:
         doc['_id'] = str(doc['_id'])  

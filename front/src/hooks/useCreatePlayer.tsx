@@ -5,14 +5,16 @@ const useCreatePlayer = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+  console.log(apiUrl)
 
   const createPlayer = async (playerName: string, puuid: string) => {
     setLoading(true);
     setError(null);
     setSuccess(false);
-
     try {
-      const response = await axios.post('http://127.0.0.1:5000/players', {
+      const response = await axios.post(apiUrl+'players', {
         playerName,
         puuid,
       });
