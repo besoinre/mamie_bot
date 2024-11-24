@@ -1,0 +1,22 @@
+.privacy-policy {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: var(--third-color);
+
+  h1,
+  h2 {
+    color: #333;
+  }
+
+  ul {
+    list-style: disc;
+    margin-left: 20px;
+  }
+
+  a {
+    color: blue;
+    text-decoration: underline;
+  }
+
+}

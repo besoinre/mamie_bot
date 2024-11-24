@@ -6,6 +6,7 @@ import Section from './components/Section/Section';
 import NavBar from './components/NavBar/NavBar';
 import LiveEventsList from './components/LiveEventsList/LiveEventsList';
 import PlayerSection from './components/PlayerSection/PlayerSection';
+import FooterDisclaimer from './components/FooterDisclaimer/FooterDisclaimer';
 
 const App: React.FC = () => {
   
@@ -28,6 +29,7 @@ const App: React.FC = () => {
         <SearchBar onSearch={handleSearch} />
         <LiveEventsList playerName={playerName} />
       </Section>
+      <FooterDisclaimer />
     </div>
   );
 };

@@ -1,0 +1,26 @@
+.footer-disclaimer {
+  color: var(--secondary-color); 
+  font-size: 0.8rem; 
+  text-align: center;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-disclaimer p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.footer-buttons{
+  color: var(--secondary-color);
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+
+  & a{
+    color: inherit;
+  }
+}
