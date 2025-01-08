@@ -3,6 +3,10 @@ import utils
 
 import requests
 import time
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 def get_(url, fetch_name = None, retries = 3):
@@ -24,22 +28,29 @@ def get_summoner(puuid = None, riot_id = None, account_id = None, summoner_id = 
 
         for attempt in range(retries):
             try:
+                logging.info(f"Attempt {attempt + 1}: Fetching summoner data for puuid {puuid}...")
+                
+                # Try fetching summoner and account data
                 r = get_(url=configs.SUMMONER_BY_PUUID.format(puuid=puuid), fetch_name=f"get_summoner for puuid (summoner): {puuid}")
                 rr = get_(url=configs.ACCOUNT_BY_PUUID.format(puuid=puuid), fetch_name=f"get_summoner for puuid (account): {puuid}")
+                
                 if r is not None and rr is not None:
                     r.update(rr)
+                    logging.info(f"Successfully fetched and merged data for puuid: {puuid}")
                     return r
                 else:
+                    logging.warning(f"Received None response for puuid: {puuid}")
                     raise ValueError("Received None response from one or more API calls")
-
+            
             except Exception as e:
-                print(f"Attempt {attempt + 1} failed: {str(e)}")
+                logging.error(f"Attempt {attempt + 1} failed: {str(e)}")
                 
                 if attempt == retries - 1:
-                    print("Max retries reached. Could not fetch the data.")
-                    raise
-                print(f"Retrying in {delay} seconds...")
-                time.sleep(delay)
+                    logging.critical("Max retries reached. Could not fetch the data.")
+                    raise  # This will re-raise the exception to propagate it after logging.
+                else:
+                    logging.info(f"Retrying in {delay} seconds...")
+                    time.sleep(delay)
     elif riot_id is not None:
         r  = get_(url = configs.ACCOUNT_BY_RIOT_ID.format(game_name = riot_id["game_name"], tagline = riot_id["tagline"]), fetch_name = f"get_summoner for riot_id: {riot_id}")
         return r
