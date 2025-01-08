@@ -6,6 +6,7 @@ import utils
 
 import json
 import traceback
+import riot_api
 
 
 class mamieBot():
@@ -15,10 +16,20 @@ class mamieBot():
         self.message_logs = []
 
         # Load the summoners from the local puuid list
-        with open(configs.PUUID_PATH, encoding = "utf-8") as json_data:
+        with open(configs.PUUID_PATH, encoding="utf-8") as json_data:
             data = json.load(json_data)
-            self.puuids = set(data.keys())         
-        self.summoners = {puuid: Summoner(puuid = puuid) for puuid in self.puuids} # {puuid: summoner} dictionary
+            self.gamename = list(data.keys()) 
+            self.tagline = list(data.values())  
+        self.puuids = []
+        for game_name, tagline in zip(self.gamename, self.tagline):
+            puuid = riot_api.get_puuid(game_name=game_name, tagline=tagline)
+            self.puuids.append(puuid["puuid"])  
+
+        self.summoners = {
+            puuid: Summoner(puuid=puuid)
+            for puuid in self.puuids
+        }
+        self.puuids = [summoner.puuid for summoner in self.summoners.values()]
         self.summoners_to_change = {puuid: Change(self.summoners[puuid], self.queue_ids) for puuid in self.puuids}
         self.summoners_to_games = {}
         self.game_ids_handled = [] # We keep track of the games that have ended and been handled to avoid duplicates
@@ -29,9 +40,20 @@ class mamieBot():
         """Sends new message logs."""
         self.message_logs = []
         # Update the summoners list
-        with open(configs.PUUID_PATH, encoding = "utf-8") as json_data:
+        # with open(configs.PUUID_PATH, encoding = "utf-8") as json_data:
+        #     data = json.load(json_data)
+        #     past_puuids, self.puuids = self.puuids, set(data.keys())
+
+        with open(configs.PUUID_PATH, encoding="utf-8") as json_data:
             data = json.load(json_data)
-            past_puuids, self.puuids = self.puuids, set(data.keys())        
+            self.gamename = list(data.keys()) 
+            self.tagline = list(data.values())
+        past_puuids = self.puuids
+        self.puuids = []
+        for game_name, tagline in zip(self.gamename, self.tagline):
+            puuid = riot_api.get_puuid(game_name=game_name, tagline=tagline)
+            self.puuids.append(puuid["puuid"])      
+
         additions = [puuid for puuid in self.puuids if puuid not in past_puuids]
         deletions = [puuid for puuid in past_puuids if puuid not in self.puuids]
         if additions:

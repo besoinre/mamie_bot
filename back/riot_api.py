@@ -19,6 +19,27 @@ def get_(url, fetch_name = None, retries = 3):
             time.sleep(10)             
             return get_(url, fetch_name, retries = retries - 1)
 
+def get_puuid(game_name = None, tagline = None):
+    if game_name is not None and tagline is not None:
+        retries = 5  # Maximum number of retries
+        delay = 30  # Delay between retries in seconds
+
+        for attempt in range(retries):
+            try:
+                r = get_(url=configs.ACCOUNT_BY_RIOT_ID.format(game_name=game_name, tagline=tagline), fetch_name=f"get_summoner for puuid (summoner): {game_name} {tagline}")
+                if r is not None:
+                    return r
+                else:
+                    raise ValueError("Received None response from one or more API calls")
+            
+            except Exception as e:
+                logging.error(f"Attempt {attempt + 1} failed: {str(e)}")
+                
+                if attempt == retries - 1:
+                    logging.critical("Max retries reached. Could not fetch the data.")
+                else:
+                    logging.info(f"Retrying in {delay} seconds...")
+                    time.sleep(delay)
 
 def get_summoner(puuid = None, riot_id = None, account_id = None, summoner_id = None):
     """Returns a dictionary {id, accountId, puuid, name, profileIconId, revisionDate, summonerLevel}."""
