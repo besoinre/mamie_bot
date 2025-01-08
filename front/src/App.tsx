@@ -7,6 +7,7 @@ import NavBar from './components/NavBar/NavBar';
 import LiveEventsList from './components/LiveEventsList/LiveEventsList';
 import PlayerSection from './components/PlayerSection/PlayerSection';
 import FooterDisclaimer from './components/FooterDisclaimer/FooterDisclaimer';
+import { Analytics } from "@vercel/analytics/react"
 
 const App: React.FC = () => {
   
@@ -30,6 +31,7 @@ const App: React.FC = () => {
         <LiveEventsList playerName={playerName} />
       </Section>
       <FooterDisclaimer />
+      <Analytics />
     </div>
   );
 };
