@@ -26,17 +26,18 @@ def get_puuid(game_name = None, tagline = None):
 
         for attempt in range(retries):
             try:
+                logging.info(f"Attempt {attempt + 1}: Fetching summoner puuid for game_name and tagline {game_name} {tagline}...")
                 r = get_(url=configs.ACCOUNT_BY_RIOT_ID.format(game_name=game_name, tagline=tagline), fetch_name=f"get_summoner for puuid (summoner): {game_name} {tagline}")
                 if r is not None:
                     return r
                 else:
-                    raise ValueError("Received None response from one or more API calls")
+                    raise ValueError(f"Received None response from get_puuid call : {game_name} {tagline}")
             
             except Exception as e:
                 logging.error(f"Attempt {attempt + 1} failed: {str(e)}")
                 
                 if attempt == retries - 1:
-                    logging.critical("Max retries reached. Could not fetch the data.")
+                    logging.critical(f"Max retries reached. Could not fetch the data for get_puuid : {game_name} {tagline}")
                 else:
                     logging.info(f"Retrying in {delay} seconds...")
                     time.sleep(delay)
