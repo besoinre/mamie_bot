@@ -23,8 +23,7 @@
     "start": "react-scripts start",
     "build": "npm config set fetch-timeout 60000 && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "install": "npm install || npm install"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
