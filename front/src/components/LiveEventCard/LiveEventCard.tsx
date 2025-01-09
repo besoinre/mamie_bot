@@ -34,7 +34,7 @@ const LiveEventCard: React.FC<LiveEventCardProps> = ({ liveEvent }) => {
             <div className="live-event-card">
                 <h3 className="header">{liveEvent.player} just got out of a {liveEvent.gameInfo.rounds} rounds and {liveEvent.gameInfo.duration} game!</h3>
                 <p>New rank {liveEvent.gameInfo.newRating}</p>
-                <p>The top comp was {liveEvent.gameInfo.topComp}</p>
+                {/* <p>The top comp was {liveEvent.gameInfo.topComp}</p> */}
                 <div className='details'>
                     <div className='details-column'>
                         <p className='details-header'>Rank</p>
@@ -44,7 +44,7 @@ const LiveEventCard: React.FC<LiveEventCardProps> = ({ liveEvent }) => {
                         <p className='details-header'>Placement</p>
                         <p>{liveEvent.gameInfo.placement}</p>
                     </div>
-                    <div className='details-column'>
+                    {/* <div className='details-column'>
                         <p className='details-header'>Augments</p>
                         <ul>
                             {liveEvent.gameInfo.augments.map((augment, index) => (
@@ -53,7 +53,7 @@ const LiveEventCard: React.FC<LiveEventCardProps> = ({ liveEvent }) => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
                 <small className='timestamp'>{liveEvent.timestamp}</small>
             </div >
