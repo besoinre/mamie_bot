@@ -32,11 +32,11 @@ class Summoner:
         self.riot_name = f"{self.game_name}#{self.tagline}"
             
         
-    def get_current_game(self, queue_id = "420"):
+    def get_current_game(self):
         """Returns None if the summoner is not in a queue_id game and otherwise returns the current game - we add the queue_id restriction to avoid mishaps with different queue_id games."""
-        current_game = riot_api.get_current_game(self.puuid, tft = queue_id in configs.TFT_QUEUE_IDS)
-        if current_game is not None and str(current_game["gameQueueConfigId"]) == str(queue_id):
-                return current_game
+        current_game = riot_api.get_current_game(self.puuid)
+        if current_game is not None and str(current_game["gameQueueConfigId"]) == "1100":
+            return current_game
         
 
     def get_played_games(self, queue_id = "420", start = utils.now() + datetime.timedelta(seconds = -3600*2), end = utils.now()):

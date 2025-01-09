@@ -61,7 +61,6 @@ def get_summoner(puuid = None, riot_id = None, account_id = None, summoner_id = 
                     logging.info(f"Successfully fetched and merged data for puuid: {puuid}")
                     return r
                 else:
-                    logging.warning(f"Received None response for puuid: {puuid}")
                     raise ValueError("Received None response from one or more API calls")
             
             except Exception as e:
@@ -115,10 +114,9 @@ def get_ended_game_info(match_id, tft = False):
     return r
 
 
-def get_current_game(puuid, tft = False):
+def get_current_game(puuid):
     """Returns information about the current game."""
-    base_url = configs.CURRENT_MATCH_BY_PUUID if not tft else configs.TFT_CURRENT_MATCH_BY_PUUID
-    r = get_(url = (base_url).format(puuid = puuid), fetch_name = "get_current_game")
+    r = get_(url = (configs.TFT_CURRENT_MATCH_BY_PUUID).format(puuid = puuid), fetch_name = "get_current_game")
     return r
 
 

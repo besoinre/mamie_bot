@@ -7,7 +7,7 @@ import os
 load_dotenv()
 
 API_KEY = os.getenv("API_KEY")
-TFT_API_KEY = os.getenv("API_KEY")
+TFT_API_KEY = os.getenv("TFT_API_KEY")
 REGION = "euw1"
 BASE_URL = "https://{region}.api.riotgames.com/lol".format(region = REGION)
 BASE_URL_MATCH = "https://{region}.api.riotgames.com/lol".format(region = "europe")
