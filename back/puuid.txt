@@ -1,2 +1,3 @@
 {"Taylor Version": "EUW",
-"Lanswel 4 REAL":"TTV01"}
+"GayPL":"Rnb0w",
+"Magarky": "EUW"}
