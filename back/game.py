@@ -309,10 +309,10 @@ class Game():
         # Find the top1 comp
         winner = [participant for participant in self.participants if participant["placement"] == 1][0]
         # winner_units = self.sort_units(winner["units"])
-        winner_units = winner['units']
-        winner_traits = [trait for unit in winner_units for trait in unit["traits"]]
-        winner_traits = {trait: len([t for t in winner_traits if t == trait]) for trait in winner_traits}
-        best_traits = sorted(winner_traits, key = winner_traits.get, reverse = True)[:2] # Only keep the two most common traits
+        # winner_units = winner['units']
+        # winner_traits = [trait for unit in winner_units for trait in unit["traits"]]
+        # winner_traits = {trait: len([t for t in winner_traits if t == trait]) for trait in winner_traits}
+        # best_traits = sorted(winner_traits, key = winner_traits.get, reverse = True)[:2] # Only keep the two most common traits
 
         new_rating = utils.format_entry(self.new_entry)
         
@@ -322,7 +322,7 @@ class Game():
             rounds= last_round,
             result= "lose" if not winner["puuid"] == self.participant["puuid"] else "win",
             new_rating=new_rating,
-            top_comp= ", ".join(best_traits),
+            top_comp= "",
             placement=placement,
             duration=game_length,
             augments=augments
