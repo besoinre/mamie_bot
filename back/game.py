@@ -308,7 +308,8 @@ class Game():
         
         # Find the top1 comp
         winner = [participant for participant in self.participants if participant["placement"] == 1][0]
-        winner_units = self.sort_units(winner["units"])
+        # winner_units = self.sort_units(winner["units"])
+        winner_units = winner['units']
         winner_traits = [trait for unit in winner_units for trait in unit["traits"]]
         winner_traits = {trait: len([t for t in winner_traits if t == trait]) for trait in winner_traits}
         best_traits = sorted(winner_traits, key = winner_traits.get, reverse = True)[:2] # Only keep the two most common traits
