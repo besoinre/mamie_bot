@@ -69,13 +69,12 @@ class mamieBot():
                         self.message_logs.append(message_log)
                         self.game_ids_handled.append(game.game_id)
                     else:
-                        for queue_id in self.queue_ids:
-                            game_data = summoner.get_current_game(queue_id = queue_id)
-                            if game_data is not None:
-                                logging.info(f"Currently in game")
-                                game = Game(game_data, summoner)
-                                if (game.game_id not in self.game_ids_handled) and (game.game_id not in [game.game_id for game in games]):
-                                    message_log = game.tft_in_game_database_entry()
-                                    self.message_logs.append(message_log)
-                                    games.append(game)
+                        game_data = summoner.get_current_game()
+                        if game_data is not None:
+                            logging.info(f"Currently in game")
+                            game = Game(game_data, summoner)
+                            if (game.game_id not in self.game_ids_handled) and (game.game_id not in [game.game_id for game in games]):
+                                message_log = game.tft_in_game_database_entry()
+                                self.message_logs.append(message_log)
+                                games.append(game)
                 self.summoners_to_games[puuid] = [game for game in games if game.game_id not in self.game_ids_handled]
