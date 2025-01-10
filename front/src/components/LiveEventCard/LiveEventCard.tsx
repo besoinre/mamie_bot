@@ -13,7 +13,7 @@ const hasGameInfo = (event: LiveEvent): event is LiveEvent & { gameInfo: NonNull
 const LiveEventCard: React.FC<LiveEventCardProps> = ({ liveEvent }) => {
 
     if (!liveEvent || !hasGameInfo(liveEvent)) return <></>;
-    let outOfGameMessage: string = `${liveEvent.player} just got out of a ${liveEvent.gameInfo.rounds} rounds`;
+    let outOfGameMessage = `${liveEvent.player} just got out of a ${liveEvent.gameInfo.rounds} rounds`;
     if(liveEvent.gameInfo!.duration){
         const minutes = Math.floor(+liveEvent.gameInfo!.duration / 60);
         const seconds = +liveEvent.gameInfo!.duration % 60;
