@@ -12,7 +12,14 @@ const hasGameInfo = (event: LiveEvent): event is LiveEvent & { gameInfo: NonNull
 
 const LiveEventCard: React.FC<LiveEventCardProps> = ({ liveEvent }) => {
 
-    if (!liveEvent) return <></>;
+    if (!liveEvent || !hasGameInfo(liveEvent)) return <></>;
+    let outOfGameMessage: string = `${liveEvent.player} just got out of a ${liveEvent.gameInfo.rounds} rounds`;
+    if(liveEvent.gameInfo!.duration){
+        const minutes = Math.floor(+liveEvent.gameInfo!.duration / 60);
+        const seconds = +liveEvent.gameInfo!.duration % 60;
+        outOfGameMessage += ` and ${minutes}:${seconds}`
+    }
+    outOfGameMessage += ' game!'
 
     if (liveEvent.status === 'entered') {
         return (
@@ -32,7 +39,7 @@ const LiveEventCard: React.FC<LiveEventCardProps> = ({ liveEvent }) => {
     if (liveEvent.status === 'exited' && hasGameInfo(liveEvent))
         return (
             <div className="live-event-card">
-                <h3 className="header">{liveEvent.player} just got out of a {liveEvent.gameInfo.rounds} rounds and {liveEvent.gameInfo.duration} game!</h3>
+                <h3 className="header">{outOfGameMessage}</h3>
                 <p>New rank {liveEvent.gameInfo.newRating}</p>
                 {/* <p>The top comp was {liveEvent.gameInfo.topComp}</p> */}
                 <div className='details'>
