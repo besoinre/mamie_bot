@@ -84,6 +84,10 @@ def delete_player(player_id):
     else:
         return jsonify({"error": "Player not found"}), 404
 
+@app.route('/keep-alive', methods=['GET'])
+def keep_alive():
+    return jsonify({"message": "Backend alive !"}), 200
+
 # Define your background task
 def lp_tracker():        
     print("Starting mamie bot")   

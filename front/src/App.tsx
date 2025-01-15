@@ -8,6 +8,7 @@ import LiveEventsList from './components/LiveEventsList/LiveEventsList';
 import PlayerSection from './components/PlayerSection/PlayerSection';
 import FooterDisclaimer from './components/FooterDisclaimer/FooterDisclaimer';
 import { Analytics } from "@vercel/analytics/react"
+import useKeepAlive from './hooks/useKeepAlive';
 
 const App: React.FC = () => {
   
@@ -16,6 +17,8 @@ const App: React.FC = () => {
   const handleSearch = (name: string) => {
     setPlayerName(name); 
   };
+
+  useKeepAlive();
   
   return (
     <div className="App">
