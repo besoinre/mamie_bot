@@ -7,20 +7,13 @@ interface LiveEventCardProps {
 }
 
 const hasGameInfo = (event: LiveEvent): event is LiveEvent & { gameInfo: NonNullable<LiveEvent['gameInfo']> } => {
-    return event.status === 'exited' && event.gameInfo !== undefined;
+    return event.status !== 'exited' || event.gameInfo !== undefined;
 };
 
 const LiveEventCard: React.FC<LiveEventCardProps> = ({ liveEvent }) => {
 
     if (!liveEvent || !hasGameInfo(liveEvent)) return <></>;
-    let outOfGameMessage = `${liveEvent.player} just got out of a ${liveEvent.gameInfo.rounds} rounds`;
-    if(liveEvent.gameInfo!.duration){
-        const minutes = Math.floor(+liveEvent.gameInfo!.duration / 60);
-        const seconds = +liveEvent.gameInfo!.duration % 60;
-        outOfGameMessage += ` and ${minutes}:${seconds}`
-    }
-    outOfGameMessage += ' game!'
-
+    
     if (liveEvent.status === 'entered') {
         return (
             <div className="live-event-card">
@@ -35,7 +28,15 @@ const LiveEventCard: React.FC<LiveEventCardProps> = ({ liveEvent }) => {
             </div>
         )
     }
-
+    
+    let outOfGameMessage = `${liveEvent.player} just got out of a ${liveEvent.gameInfo.rounds} rounds`;
+    if(liveEvent.gameInfo!.duration){
+        const minutes = Math.floor(+liveEvent.gameInfo!.duration / 60);
+        const seconds = +liveEvent.gameInfo!.duration % 60;
+        outOfGameMessage += ` and ${minutes}:${seconds}`
+    }
+    outOfGameMessage += ' game!'
+    
     if (liveEvent.status === 'exited' && hasGameInfo(liveEvent))
         return (
             <div className="live-event-card">

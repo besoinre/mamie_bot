@@ -10,7 +10,7 @@ interface LiveEventsListProps {
 
 const LiveEventsList: React.FC<LiveEventsListProps> = ({ playerName}) => {
     
-    const { data, error } = useLiveEventInfo(playerName);
+    const { data, error, isLoading, dataSource, isLive } = useLiveEventInfo(playerName);
 
     if (error) {
         return (
@@ -20,10 +20,10 @@ const LiveEventsList: React.FC<LiveEventsListProps> = ({ playerName}) => {
         );
     }
 
-    if(data.length === 0){
+    if (isLoading) {
         return (
             <div className="live-events">
-                <p>No data to display</p>
+                <p>Loading data...</p>
             </div>
         );
     }

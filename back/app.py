@@ -10,12 +10,34 @@ import re
 from bson import ObjectId
 import os
 from waitress import serve
+import firebase_admin
+from firebase_admin import credentials, db
 
+firebaseUrl = os.getenv("FIREBASE_URL")
+cred = credentials.Certificate({
+    "type": "service_account",
+    "project_id": os.getenv("FIREBASE_PROJECT_ID"),
+    "private_key_id": os.getenv("FIREBASE_PRIVATE_KEY_ID"),
+    "private_key": os.getenv("FIREBASE_PRIVATE_KEY"),
+    "client_email": os.getenv("FIREBASE_CLIENT_EMAIL"),
+    "client_id": os.getenv("FIREBASE_CLIENT_ID"),
+    "auth_uri": os.getenv("FIREBASE_AUTH_URI"),
+    "token_uri": os.getenv("FIREBASE_TOKEN_URI"),
+    "auth_provider_x509_cert_url": os.getenv("FIREBASE_AUTH_PROVIDER_X509_CERT_URL"),
+    "client_x509_cert_url": os.getenv("FIREBASE_CLIENT_X509_CERT_URL"),
+    "universe_domain": "gooleapis.com"    
+})
+firebase_admin.initialize_app(cred, {
+    'databaseURL': firebaseUrl
+})
+
+environment = os.getenv("ENVIRONMENT")
 database_url = os.getenv("DATABASE_URL")
-client = MongoClient(database_url, ssl=True)
-db = client['mamie_bot']
-playersCollection = db['players']
-eventsCollection = db['events']
+
+client = MongoClient(database_url, ssl=environment != 'dev')
+db_mongo = client['mamie_bot']
+playersCollection = db_mongo['players']
+eventsCollection = db_mongo['events']
 
 app = Flask(__name__)
 CORS(app)
@@ -84,9 +106,33 @@ def delete_player(player_id):
     else:
         return jsonify({"error": "Player not found"}), 404
 
-@app.route('/keep-alive', methods=['GET'])
-def keep_alive():
-    return jsonify({"message": "Backend alive !"}), 200
+def update_firebase_games_history(new_games_data, max_history=500):
+    # Add new entry as before
+    history_ref = db.reference('tft-games-history')
+    entry_key = str(int(time.time() * 1000))
+    
+    history_ref.child(entry_key).set({
+        'games': new_games_data,
+        'timestamp': entry_key
+    })
+    
+    # Update latest reference
+    latest_ref = db.reference('tft-games-latest')
+    latest_ref.set({
+        'games': new_games_data,
+        'timestamp': entry_key
+    })
+    
+    # Prune old entries if needed
+    all_entries = history_ref.get() or {}
+    if all_entries and len(all_entries) > max_history:
+        # Sort entries by timestamp (oldest first)
+        sorted_keys = sorted(all_entries.keys())
+        # Calculate how many to remove
+        to_remove = len(sorted_keys) - max_history
+        # Remove oldest entries
+        for i in range(to_remove):
+            history_ref.child(sorted_keys[i]).delete()
 
 # Define your background task
 def lp_tracker():        
@@ -103,6 +149,7 @@ def lp_tracker():
                 try:     
                     print(str(message_log))
                     eventsCollection.insert_one(asdict(message_log))
+                    update_firebase_games_history(asdict(message_log))
                 except Exception as e:
                     print("An error occurred:")
                     traceback.print_exc()

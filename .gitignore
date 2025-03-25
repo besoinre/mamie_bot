@@ -13,6 +13,7 @@ back/venv/
 back/__pycache__/
 back/.env
 back/testmongo.py
+back/config/*
 
 # Environment variables
 .env
@@ -24,3 +25,5 @@ back/testmongo.py
 .DS_Store
 
 .vscode
+
+*.code-workspace
