@@ -58,35 +58,21 @@ const useLiveEventInfo = (playerName?: string) => {
     
     // Setup Firebase listener for cached data
     useEffect(() => {
-        console.log('useEffect triggered', { playerName });
         const firebasePath = `tft-games-history` 
         const liveEventsRef = ref(database, firebasePath);
         
-        console.log('Reference created', { liveEventsRef });
-        
         const unsubscribe = onValue(liveEventsRef, (snapshot) => {
-            console.log('Snapshot received', { 
-                exists: snapshot.exists(), 
-                val: snapshot.val() 
-            });
-            
             const firebaseData = snapshot.val();
             if (firebaseData) {
-                console.log('Firebase data found', { firebaseData });
-                
                 const liveEvents = Object.values(firebaseData).map((data: any) => {
                     return transform(data.games)
                 });
-                
-                console.log('Live events', { liveEvents });
                 
                 const sortedEvents = sortLiveEvents(liveEvents);
                 
                 setData(sortedEvents);
                 prevData.current = sortedEvents;
                 setDataSource('firebase');
-            } else {
-                console.log('No Firebase data found');
             }
         }, (error) => {
             console.error('Firebase read error', error);
